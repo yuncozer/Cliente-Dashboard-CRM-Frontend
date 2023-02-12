@@ -1,6 +1,6 @@
 import React from 'react'
 import { useLocation } from 'react-router-dom';
-import { FetchApi } from '../../Helpers/FetchApi';
+import { FetchApiData } from '../../Helpers/FetchApiData';
 import { DataCardCompanies } from '../../Helpers/DataCardCompanies';
 import { RiDownload2Fill } from "react-icons/ri";
 import { CardHubspot } from '../../components/CardHubspot';
@@ -23,7 +23,7 @@ export const Companies = () => {
 
   // Call to api in the backend server
   
-  const {backendData, isLoading} = FetchApi( page );
+  const {backendData, isLoading} = FetchApiData( page );
 
   const { dataLength,
     percentGrowthCompanies,

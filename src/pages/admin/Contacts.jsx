@@ -1,6 +1,6 @@
 import React, { useState, useEffect} from 'react'
 import { useLocation } from 'react-router-dom';
-import { FetchApi } from '../../Helpers/FetchApi';
+import { FetchApiData } from '../../Helpers/FetchApiData';
 import { DataCardsContacts } from '../../Helpers/DataCardsContacts';
 import { DataChartContacts } from '../../Helpers/DataChartContacts';
 import { DataChartPieContacts } from '../../Helpers/DataChartPieContacts';
@@ -25,7 +25,7 @@ export const Contacts = () => {
 
   // Call to api in the backend server
   
-  const {backendData, isLoading} = FetchApi( page );
+  const {backendData, isLoading} = FetchApiData( page );
   
   // Get data Cards Statitics 
   

@@ -1,22 +1,11 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import img_logo from "../../../public/img/logo.jpg"
 import { RiLink } from "react-icons/ri";
 
 
 export const Home = () => {
 
-  const [backendData, setBackendData] = useState([{}])
-
-  useEffect(() => {
-    fetch('/apicontacts').then(
-      response => response.json()
-    ).then(
-      data => {
-        setBackendData(data);
-      }
-    )
-  }, [])
-  console.log(backendData)
+ 
 
 return(
 
