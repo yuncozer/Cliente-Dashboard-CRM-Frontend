@@ -8,10 +8,6 @@ const columns = [
         label: "Name Deal"
     },
     {
-        name: "idOwnerDeal",
-        label: "Owner Deal"
-    },
-    {
         name: "type",
         label: "Type Activity"
     },
@@ -26,30 +22,30 @@ const columns = [
 ];
 
 
-const hola = 1;
 
-export const TableList = (backendData) => {
-    
-    var options = {
+export const TableList = (data) => {
+
+    var options   = {
         download: false,
-        elevation: 1,
+        elevation: 0.9,
         filterType: "dropdown",
-        fixedHeader: true,
         jumpToPage: true,
         responsive: 'standard',
-        rowHover: true,
         rowsPerPage: 5,
         rowsPerPageOptions: [5,10,20],
         selectableRowsHeader: false,
         selectableRowsHideCheckboxes: true,
-        textLabels: { body:""}
+        textLabels: { body: {
+                                noMatch: "Loading data..."
+                            }
+                    }
     };   
-    
+ 
     return (
-                <div className='sm:col-span-4 items-center justify-center rounded-full '>
+                <div className='sm:col-span-4 items-center justify-center mt-4 '>
                     <MUIDataTable
                         title={"ENGAGEMENT DONE BY DEAL OWNERS LAST WEEK (ACCOUNT MANAGERS)"}
-                        data={backendData.data}
+                        data={data.data}
                         columns={columns}
                         options={options}
                     />

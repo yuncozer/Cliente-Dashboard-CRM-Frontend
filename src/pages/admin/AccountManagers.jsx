@@ -45,9 +45,8 @@ export const AccountManagers = () => {
   // Call to api in the backend server
   const deals = 'deals';
   const owners = 'owners';
-  const {backendData, backendDataDeals, backendDataOwners} = FetchApiData( page, deals, owners);
+  const {backendData, backendDataDeals, backendDataOwners, isLoading} = FetchApiData( page, deals, owners);
   const { dataDeals } = DataCardDealsAccountsManager (backendDataDeals, backendDataOwners);
-  console.log(dataDeals);
   // call custom theme dark
   const darkModeTheme = createTheme(getDesignTokens('dark'));
   
@@ -55,18 +54,32 @@ export const AccountManagers = () => {
     return (
       <div id='Page'>
         
-        <div className='grid grid-cols-1 sm:col-span-4 sm:grid-cols-4 gap-8'>
-        {
-          backendDataDeals.map( el => (
-            <CardDeals 
-                nameDeal={el.name}
-
-            />
-          ))
-        }
-        <ThemeProvider theme={darkModeTheme}>
-          <TableList data={backendData}/>
-        </ThemeProvider>
+        <div className='grid grid-cols-1 sm:grid-cols-4 gap-8'>
+          <span className='sm:col-span-4 ml-4 font-bold text-4xl text-white '>Unclosed Deals </span>
+            { (isLoading) ? 
+              <CardDeals
+                nameDeal="loading..."
+                amount="0"
+                nextStep="loading..."
+                ownerName="loading..."
+              /> :
+              dataDeals.map( el => (
+                <CardDeals 
+                    key={el.id}
+                    nameDeal={el.nameDeal}
+                    amount={el.amount}
+                    nextStep={el.nextStep}
+                    ownerName={el.ownerName}
+                    color={el.color}
+                />
+              ))
+            }
+            <ThemeProvider theme={darkModeTheme}>
+              <TableList 
+                isLoading={isLoading}
+                data={backendData}
+              />
+            </ThemeProvider>
         
         </div>
         

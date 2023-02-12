@@ -23,7 +23,7 @@ export const FetchApiData = (page, deals, owners) => {
         ).then(
           data => {
               setBackendDataDeals( data );
-              setIsLoading( false );          
+              //setIsLoading( false );          
           }
         )
         fetch(`/api${owners}`).then(  
@@ -31,7 +31,7 @@ export const FetchApiData = (page, deals, owners) => {
         ).then(
           data => {
               setBackendDataOwners( data );
-              setIsLoading( false );          
+              //setIsLoading( false );          
           }
         )
       }
