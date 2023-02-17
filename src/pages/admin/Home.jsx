@@ -5,7 +5,6 @@ import { RiLink } from "react-icons/ri";
 
 export const Home = () => {
 
- 
 
 return(
 

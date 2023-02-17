@@ -17,13 +17,13 @@ const columns = [
     },
     {
         name: "ownerActivityName",
-        label: "Owner Activity"
+        label: "Activity Owner"
     },
 ];
 
 
 
-export const TableList = (data) => {
+export const TableList = (data, isLoading) => {
 
     var options   = {
         download: false,
@@ -32,7 +32,7 @@ export const TableList = (data) => {
         jumpToPage: true,
         responsive: 'standard',
         rowsPerPage: 5,
-        rowsPerPageOptions: [5,10,20],
+        rowsPerPageOptions: [5,10,15],
         selectableRowsHeader: false,
         selectableRowsHideCheckboxes: true,
         textLabels: { body: {
@@ -42,8 +42,8 @@ export const TableList = (data) => {
     };   
  
     return (
-                <div className='sm:col-span-4 items-center justify-center mt-4 '>
-                    <MUIDataTable
+                <div className='sm:col-span-4 items-center justify-center mt-4'>
+                    <MUIDataTable 
                         title={"ENGAGEMENT DONE BY DEAL OWNERS LAST WEEK (ACCOUNT MANAGERS)"}
                         data={data.data}
                         columns={columns}

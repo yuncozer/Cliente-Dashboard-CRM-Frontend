@@ -49,7 +49,7 @@ export const AccountManagers = () => {
   const { dataDeals } = DataCardDealsAccountsManager (backendDataDeals, backendDataOwners);
   // call custom theme dark
   const darkModeTheme = createTheme(getDesignTokens('dark'));
-  
+  console.log(backendData.data);
   // const {  } = DataTableAMActivitys (backendData);
     return (
       <div id='Page'>
@@ -57,6 +57,7 @@ export const AccountManagers = () => {
         <div className='grid grid-cols-1 sm:grid-cols-4 gap-8'>
           <span className='sm:col-span-4 ml-4 font-bold text-4xl text-white '>Unclosed Deals </span>
             { (isLoading) ? 
+              
               <CardDeals
                 nameDeal="loading..."
                 amount="0"
@@ -74,12 +75,14 @@ export const AccountManagers = () => {
                 />
               ))
             }
-            <ThemeProvider theme={darkModeTheme}>
-              <TableList 
-                isLoading={isLoading}
-                data={backendData}
-              />
-            </ThemeProvider>
+            <div className='sm:col-span-4 max-h-min'>
+              <ThemeProvider theme={darkModeTheme}>
+                <TableList 
+                  isLoading={isLoading}
+                  data={backendData}
+                />
+              </ThemeProvider>
+            </div>
         
         </div>
         

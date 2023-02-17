@@ -11,7 +11,7 @@ const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, per
   const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
   const x = cx + radius * Math.cos(-midAngle * RADIAN);
   const y = cy + radius * Math.sin(-midAngle * RADIAN);
-  console.log("Porcentajes: ", percent);
+  // console.log("Porcentajes: ", percent);
     return (
     <text x={x} y={y} fill="white" textAnchor={x > cx ? 'start' : 'end'} dominantBaseline="central">
       {`${(percent * 100).toFixed(1)}%`}
@@ -22,7 +22,7 @@ const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, per
 export const CardChartPie = ({data}, contTotalLeads, contTotalCustomer) => {
     const { pathname } = useLocation();
     const [layout1, page1] = pathname.split("/").filter((el) => el !== ""); 
-  console.log(data);
+  // console.log(data);
     return (
       <div className='flex flex-col items-center h-[28rem] justify-center rounded-xl bg-secondary-100'>
        

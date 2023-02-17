@@ -34,8 +34,14 @@ export const CardChart = (data) =>{
           <YAxis />
           <Tooltip  contentStyle={contentStyle} wrapperStyle={wrapperStyle}/>
           <Legend  align="center" verticalAlign="bottom" height={50} layout="horizontal" />
+          <Line type="monotone" dataKey="suscriber" stroke="#FC4A4A" activeDot={{ r: 8 }} />
+          <Line type="monotone" dataKey="lead" stroke="#00C49F" activeDot={{ r: 8 }}/>
+          <Line type="monotone" dataKey="marketingQLead" stroke="#F5EE05" activeDot={{ r: 8 }} />
+          <Line type="monotone" dataKey="salesQLead" stroke="#51F505" activeDot={{ r: 8 }} />
+          <Line type="monotone" dataKey="opportunity" stroke="#05F5A5" activeDot={{ r: 8 }} />
           <Line type="monotone" dataKey="customer" stroke="#0088FE" activeDot={{ r: 8 }} />
-          <Line type="monotone" dataKey="lead" stroke="#00C49F" />
+          <Line type="monotone" dataKey="evangelist" stroke="#F50505" activeDot={{ r: 8 }} />
+          <Line type="monotone" dataKey="other" stroke="#ca8cbb" activeDot={{ r: 8 }} />
         </LineChart>
       </ResponsiveContainer>
       </div>

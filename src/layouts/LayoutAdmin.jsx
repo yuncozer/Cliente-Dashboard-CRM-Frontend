@@ -9,7 +9,7 @@ export const LayoutAdmin = () => {
         <Sidebar/>
         <div className='xl:col-span-5'>
           <Header/>
-          <div className='h-[90vh] overflow-y-auto p-8'>
+          <div className='h-[90vh] overflow-hidden overflow-y-auto p-8 '>
             <Outlet/>
           </div>
         </div>
