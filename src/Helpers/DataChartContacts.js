@@ -26,7 +26,13 @@ export const DataChartContacts = (backendData) => {
     let intervalStart;            // Interval Start initialization
     let intervalEnd = new Date(); // Final interval initialization
     let contCustomer = 0;         // customer counter
-    let contLead = 0;             // lead counter
+    let contEvangelist = 0;       // evangelist counter
+    let contLead = 0;             // counter counter
+    let contMarketingQLead = 0;   // marketingqualifiedlead counter
+    let contOpportunity = 0;      // opportunity counter
+    let contOther = 0;            // other counter
+    let contSalesQLead = 0;       // salesqualifiedlead counter
+    let contSubscriber = 0        // subscriber counter
     
     //  Take the month and year of the start date by converting the start date to a string and separating the data
     let [day, month, dayNum, yearNum, time] = dateStart.toString().split(" ").filter((el) => el !== "");
@@ -44,24 +50,38 @@ export const DataChartContacts = (backendData) => {
     for (let index = 1; index < 5; index++) {
 
       backendData.map( (el) =>{
-        
-       if (Date.parse(el.createDate) > intervalStart.getTime() 
-            && Date.parse(el.createDate) < intervalEnd.getTime()) 
-            {
-              if (el.status === "customer") {
-                contCustomer += 1;
-              } 
-              if (el.status === "lead") {
-                contLead += 1;
-              }
-              
-            }
+      
+      if( Date.parse(el.createDate) > intervalStart.getTime() 
+          && Date.parse(el.createDate) < intervalEnd.getTime())
+        {
+          
+          (Date.parse(el.createDate) == Date.parse(el.dateSubscriber)) ?  contSubscriber += 1
+          : (Date.parse(el.createDate) == Date.parse(el.dateLead)) ?   contLead += 1 
+          : (Date.parse(el.createDate) == Date.parse(el.dateMarketingQualifiedLead)) ?  contMarketingQLead += 1 
+          : (Date.parse(el.createDate) == Date.parse(el.dateSalesQualifiedLead)) ?  contSalesQLead += 1 
+          : (Date.parse(el.createDate) == Date.parse(el.dateOpportunity)) ?  contOpportunity += 1 
+          : (Date.parse(el.createDate) == Date.parse(el.dateCustomer)) ?  contCustomer += 1 
+          : (Date.parse(el.createDate) == Date.parse(el.dateEvangelist)) ?  contEvangelist += 1
+          :  contOther =+ 1; 
+        }
+
+    
       });
       // The data is loaded into the array of objects that will be returned.
-      dataChartContact[index-1] = {month: month, customer: contCustomer, lead: contLead}
-      
+      dataChartContact[index-1] = { month: month, 
+                                    suscriber: contSubscriber,
+                                    lead: contLead,
+                                    marketingQLead: contMarketingQLead,
+                                    salesQLead: contSalesQLead,
+                                    opportunity: contOpportunity,
+                                    customer: contCustomer,
+                                    evangelist: contEvangelist,
+                                    other: contOther
+                                  }
+  
       // Counters are brought back to zero to count the following month
-      contCustomer = contLead = 0;
+      contSubscriber = contLead = contMarketingQLead = contSalesQLead = 0;
+      contOpportunity = contCustomer = contEvangelist = contOther = 0;
       
       // 1 second is added to move to the starting day of the following month
       intervalStart.setTime(intervalEnd.getTime() + (index * 1000));
@@ -71,7 +91,7 @@ export const DataChartContacts = (backendData) => {
       intervalEnd.setTime(intervalStart.getTime() + (days * 86399950));
       
     } 
-    //console.log(dataChartContact);
+    console.log(dataChartContact);
     
 
   return {
