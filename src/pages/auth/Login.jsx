@@ -3,6 +3,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import { Password } from '../../components/Password';
 import { RiMailFill, RiLockFill, RiEyeFill, RiEyeOffFill } from "react-icons/ri";
 import { useAuth } from '../../context/authContext';
+
+
 export const Login = () => {
 
   const [showPassword, setShowPassword] = useState(false);
@@ -15,9 +17,13 @@ export const Login = () => {
 
   const handleChange = ({ target: { name, value } }) => setUser({ ...user, [name]: value })
 
-  const handleGoogle = (e) => {
-    e.preventDefault()
-    loginWithGoogle(user.email, user.password)
+  const handleGoogle = async () => {
+    try {
+      await loginWithGoogle()
+      navigate("/dashboard");
+    } catch (error) {
+      setError(error.message)
+    }
   }
 
   const handleSubmit = async (e) => {
@@ -27,6 +33,10 @@ export const Login = () => {
       await login(user.email, user.password);
       navigate("/dashboard");
     } catch (error) {
+      (error.code == "auth/invalid-email") ? 
+        setError("Enter a valid email") :
+      (error.code == "auth/wrong-password") ?
+        setError("Password error") :
       setError(error.message)
     }
   }
@@ -35,16 +45,16 @@ export const Login = () => {
     <div className="bg-secondary-100 p-8 rounded-xl shadow-2xl w-auto lg:w-[450px]">
       <h1 className='text-xl uppercase font-bold tracking-[3px] text-white mb-8 text-center'>Dashboard CRM Login</h1>
       {/* {(displayName) && <h1>{displayName}</h1>} */}
-
-      <form onSubmit={handleSubmit} className='mb-8'>
-        <button onClick={(e) => handleGoogle(e)}
-          className='flex items-center justify-center py-3 px-4 gap-4 bg-secondary-900 w-full rounded-full mb-8 text-gray-100'>
+      {/* -------------------LOGIN GOOGLE--------------------------- */}        
+      <button onClick={handleGoogle}
+          className='flex items-center justify-center py-3 px-4 gap-4 bg-secondary-900 hover:bg-primary/50 hover:text-secondary-900 w-full rounded-full mb-8 text-gray-100'>
           <img src="https://cdn-icons-png.flaticon.com/512/300/300221.png"
             className='w-4 h-4'
           />
           Login with Google
         </button>
-        {/* -------------------EMAIL--------------------------- */}
+      <form onSubmit={handleSubmit} className='mb-8'>
+        {/* -------------------INPUT EMAIL--------------------------- */}
         <div className='relative mb-4'>
           <RiMailFill className='absolute top-1/2 -translate-y-1/2 left-2 ' />
           <input onChange={handleChange}
@@ -55,7 +65,7 @@ export const Login = () => {
           />
         </div>
 
-        {/* -------------------PASSWORD--------------------------- */}
+        {/* -------------------INPUT PASSWORD--------------------------- */}
         <div className='relative mb-4'>
 
           <RiLockFill className='absolute top-1/2 -translate-y-1/2 left-2' />
@@ -66,10 +76,10 @@ export const Login = () => {
             placeholder="Password"
           />
           {showPassword ? (
-            <RiEyeFill onClick={() => setShowPassword(!showPassword)}
+            <RiEyeOffFill onClick={() => setShowPassword(!showPassword)}
               className='absolute top-1/2 -translate-y-1/2 right-2 hover:cursor-pointer' />
           ) : (
-            <RiEyeOffFill onClick={() => setShowPassword(!showPassword)}
+            <RiEyeFill onClick={() => setShowPassword(!showPassword)}
               className='absolute top-1/2 -translate-y-1/2 right-2 hover:cursor-pointer' />
 
           )
@@ -90,12 +100,12 @@ export const Login = () => {
       {/* -------------------Loose Password--------------------------- */}
       <div className='flex flex-col items-center gap-4'>
         <Link to="/forgetPass" className='hover:text-primary transition-colors'>
-          ¿Password Forget?
+          ¿Forgot Password?
         </Link>
         <span className='flex items-center gap-2'>
           ¿You haven't account? <Link to="/registro"
             className='text-primary/80 hover:text-gray-100 transition-colors'>
-            Sign in
+            Register
           </Link>
         </span>
       </div>

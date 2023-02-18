@@ -19,6 +19,7 @@ import { Deals } from "./pages/admin/Deals";
 import { AccountManagers } from "./pages/admin/AccountManagers";
 
 import { Error404 } from "./pages/Error404";
+import { ProtectedRoute } from './pages/admin/ProtectedRoute';
 
 
 
@@ -33,12 +34,12 @@ function App() {
             <Route path="registro" element={<Register/>}/>
             <Route path="forgetPass" element={<ForgetPassword/>}/>
           </Route>
-          <Route path="/dashboard" element={<LayoutAdmin />}> 
-            <Route index element={<Home/> }/>
-            <Route path="contacts" element={<Contacts/>} />
-            <Route path="companies" element={<Companies/>} />
-            <Route path="deals" element={<Deals/>} />
-            <Route path="accountmanagers" element={<AccountManagers/>} />
+          <Route path="/dashboard" element={<ProtectedRoute><LayoutAdmin /></ProtectedRoute>}> 
+            <Route index element={<ProtectedRoute><Home/></ProtectedRoute> }/>
+            <Route path="contacts" element={<ProtectedRoute><Contacts/></ProtectedRoute>} />
+            <Route path="companies" element={<ProtectedRoute><Companies/></ProtectedRoute>} />
+            <Route path="deals" element={<ProtectedRoute><Deals/></ProtectedRoute>} />
+            <Route path="accountmanagers" element={<ProtectedRoute><AccountManagers/></ProtectedRoute>} />
           </Route>
           <Route path="*" element={<Error404/>}/>
         </Routes>

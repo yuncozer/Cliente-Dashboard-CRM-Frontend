@@ -7,7 +7,8 @@ import {
     GoogleAuthProvider,
     signInWithPopup,
     signOut,
-    onAuthStateChanged
+    onAuthStateChanged,
+    sendPasswordResetEmail
 } from "firebase/auth";
 
 
@@ -27,10 +28,11 @@ export function AuthProvider({ children }) {
     useEffect(() => {
         const suscribed = onAuthStateChanged(auth, (currentUser) => {
             if (!currentUser) {
-                console.log("No hay usuario inscrito");
+                console.log("No hay usuario logeado");
                 setUser("")
             } else {
                 setUser(currentUser)
+                console.log(user);
             }
         })
         return () => suscribed()
@@ -56,12 +58,17 @@ export function AuthProvider({ children }) {
         console.log(response);
     }
 
+    const resetPassword = async(email) => {
+       await sendPasswordResetEmail(auth, email)
+    }
+
     return (
         <authContext.Provider value={{
             register,
             login,
             loginWithGoogle,
             logout,
+            resetPassword,
             user
         }}>{children}
         </authContext.Provider>);

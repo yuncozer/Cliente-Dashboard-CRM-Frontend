@@ -33,14 +33,18 @@ export const Register = () => {
       navigate("/")
     
     } catch (error) {
-      setError(error.message);
+      (error.code == "auth/invalid-email") ? 
+        setError("Enter a valid email") :
+      (error.code == "auth/weak-password") ?
+        setError("Password should be at least 6 characters ") :
+      setError(error.message)
     }
   }
 
 
   return (
     <div className="bg-secondary-100 p-8 rounded-xl shadow-2xl w-auto lg:w-[450px]">
-      <h1 className='text-3xl uppercase font-bold tracking-[5px] text-white mb-8 text-center'>Registro de Usuario</h1>      
+      <h1 className='text-2xl uppercase font-bold tracking-[5px] text-white mb-8 text-center'>Account registration</h1>      
       <form onSubmit={handleSubmit}
             className='mb-8'>
         {/* <button className='flex items-center justify-center py-3 px-4 gap-4 bg-secondary-900 w-full rounded-full mb-8 text-gray-100'>
@@ -63,7 +67,7 @@ export const Register = () => {
             type="email" 
             name="email"
             className=' py-3 pl-8 pr-4 bg-secondary-900 w-full outline-none rounded-lg focus:border focus:border-primary'
-            placeholder='Correo Electronico'
+            placeholder='Email'
           />
         </div>
         {/* -------------------PASSWORD--------------------------- */}
@@ -77,10 +81,10 @@ export const Register = () => {
             placeholder="Password"
           />
           {showPassword ? (
-            <RiEyeFill onClick={() => setShowPassword(!showPassword)}
+            <RiEyeOffFill onClick={() => setShowPassword(!showPassword)}
               className='absolute top-1/2 -translate-y-1/2 right-2 hover:cursor-pointer' />
           ) : (
-            <RiEyeOffFill onClick={() => setShowPassword(!showPassword)}
+            <RiEyeFill onClick={() => setShowPassword(!showPassword)}
               className='absolute top-1/2 -translate-y-1/2 right-2 hover:cursor-pointer' />
 
           )
@@ -91,17 +95,17 @@ export const Register = () => {
           <button 
             type='submit'
             className='bg-primary w-full text-secondary-100 py-3 px-4 rounded-lg  hover:text-white hover:bg-secondary-900 transition-colors uppercase font-bold'>
-            Registrarme
+            Create Account
           </button>
         </div>
       </form>
       {error && <p className='m-2 text-red-700 font-bold text-center text-lg'>{error}</p>}
       <div className='flex flex-col items-center gap-4'>
         <span className='flex items-center gap-2'>
-          ¿Ya tienes cuenta?
+        ¿You have an account?
           <Link to="/"
             className='text-primary/80 hover:text-gray-100 transition-colors'>
-            Ingresa
+            Login
           </Link>
         </span>
       </div>
