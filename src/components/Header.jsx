@@ -10,10 +10,11 @@ import {
 import { Menu, MenuItem, MenuButton } from '@szhsin/react-menu';
 import '@szhsin/react-menu/dist/index.css';
 import '@szhsin/react-menu/dist/transitions/slide.css';
+import { useAuth } from '../context/authContext';
 
 
 const Header = () => {
-  
+  const {user} = useAuth();
   const { pathname } = useLocation();
   const [layout, page] = pathname.split("/").filter((el) => el !== "");
   const dash = '/dashboard';
@@ -33,7 +34,7 @@ const Header = () => {
         </button>
         <Menu menuButton={<MenuButton className='flex items-center gap-x-2 hover:bg-primary/30 py-2 px-4 rounded-lg transition-colors'>
                               <img src={img_logo} className="w-6 h-6 object-cover rounded-full"/>
-                              <span>Shokworks INC</span>
+                              <span className='font-semibold text-md text-white uppercase'>{user.email}</span>
                               <RiArrowDownSLine/>
                           </MenuButton>}align="end"
                                         arrowClassName="bg-secondary-100"

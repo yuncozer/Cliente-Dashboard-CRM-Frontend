@@ -51,7 +51,7 @@ export const Contacts = () => {
   const { dataChartPieContact } = DataChartPieContacts (backendData);
   
     return (
-      <div id='Page'>       
+      <div id='Page'  className="bg-secondary-900">       
         <div className='grid grid-cols-1 md:grid-cols-6 md:gap-4 place-content-around'>
           {/* COL 1 */}
             <div className='grid grid-cols-1 md:col-span-4 sm:grid-cols-4 gap-4'>

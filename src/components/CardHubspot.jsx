@@ -11,14 +11,15 @@ export const CardHubspot = () => {
   const today = date.format("DD/MM/YYYY");
 // Take a screenshot and dowloand pdf
   const exportPDF = () => {
-    const input = document.getElementById("body") 
+    var today = new Date();
+    const input = document.getElementById("Page") 
     html2canvas(input, {logging: true, letterRendering: 1, useCORS: true}).then(canvas => {
         const imgWidth = 208;
         const imgHeight = canvas.height * imgWidth / canvas.width;
         const imgData = canvas.toDataURL('image/png');
         const pdf = new jsPDF('p', 'mm', 'a4');
         pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
-        pdf.save("prueba.pdf")
+        pdf.save(`${today}dashboard_crm.pdf`)
     })
 }
 

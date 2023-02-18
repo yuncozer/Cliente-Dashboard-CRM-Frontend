@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { 
         RiBarChart2Line,
@@ -14,8 +15,24 @@ import {
     from "react-icons/ri";
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
+import { useAuth } from '../context/authContext';
 
 const Sidebar = () => {
+    
+    
+    const {logout} = useAuth()
+    
+    const handleLogout = () => {
+        logout();
+    }
+    
+    // Hook Location Page
+  
+    const { pathname } = useLocation();
+    const [layout, page] = pathname.split("/").filter((el) => el !== "");
+    
+    // Screenshot view page and donwload pdf file
+    
     var today = new Date();
     const [showMenu, setShowMenu] = useState(false);
     const [showSubMenu, setShowSubMenu] = useState(false);
@@ -43,13 +60,6 @@ const Sidebar = () => {
             </h1>
             {/* Items */}
             <ul>
-                {/* Analiticas */}
-                {/* <li>
-                    <Link   className='flex items-center gap-4 py-2 px-4 rounded-lg hover:bg-secondary-900 transition-colors'
-                            to='/'>
-                        <RiBarChart2Line    className='text-primary'/>Analíticas
-                    </Link>
-                </li> */}
                 {/* CRM Objects */}
                 <li>
                     <button className='flex items-center justify-between py-2 px-4 rounded-lg hover:bg-secondary-900 transition-colors w-full'
@@ -98,16 +108,18 @@ const Sidebar = () => {
                     </Link>
                 </li>
                 {/* DownLoad views */}
-                <li>
-                    <Link onClick={ () => exportPDF() }  className='flex items-center gap-4 py-2 px-4 rounded-lg hover:bg-secondary-900 transition-colors'
-                            to='/'>
+                { page ? 
+                    <li>
+                    <Link onClick={ () => exportPDF() }  className='flex items-center gap-4 py-2 px-4 rounded-lg hover:bg-secondary-900 transition-colors'>
                         <RiDownload2Fill    className='text-primary'/>Download View
                     </Link>
-                </li>
+                    </li> : <div/>  
+                }
             </ul>
         </div>
         <nav>
-            <Link   className='flex items-center gap-4 py-2 px-4 rounded-lg hover:bg-secondary-900 transition-colors'
+            <Link   onClick={ () => handleLogout() }
+                    className='flex items-center gap-4 py-2 px-4 rounded-lg hover:bg-secondary-900 transition-colors'
                     to='/'>
                 <RiDoorOpenLine    className='text-primary'/>Exit
             </Link>

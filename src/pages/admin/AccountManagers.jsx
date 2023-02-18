@@ -52,7 +52,7 @@ export const AccountManagers = () => {
   console.log(backendData.data);
   // const {  } = DataTableAMActivitys (backendData);
     return (
-      <div id='Page'>
+      <div id='Page' className="bg-secondary-900">
         
         <div className='grid grid-cols-1 sm:grid-cols-4 gap-8'>
           <span className='sm:col-span-4 ml-4 font-bold text-4xl text-white '>Unclosed Deals </span>
@@ -83,7 +83,9 @@ export const AccountManagers = () => {
                 />
               </ThemeProvider>
             </div>
-        
+            <div className='sm:col-span-4 max-h-min'>
+              <CardHubspot/>
+            </div>
         </div>
         
       </div>
