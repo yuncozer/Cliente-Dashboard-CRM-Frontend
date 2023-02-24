@@ -39,7 +39,7 @@ const Header = () => {
                             box-content font-bold animate-pulse'> 2
           </span> */}
         </button>
-        <Menu menuButton={<MenuButton className='flex items-center gap-x-2 hover:bg-primary/30 py-2 px-4 rounded-lg transition-colors'>
+        <Menu menuButton={<MenuButton className='flex items-center gap-x-2 hover:bg-secondary-100 py-2 px-4 rounded-lg transition-colors'>
                               <img src={user.photoURL || img_logo } className="w-6 h-6 object-cover rounded-full"/>
                               <span className='font-semibold text-md text-white uppercase'>{user.displayName || user.email}</span>
                               <RiArrowDownSLine/>
@@ -48,7 +48,7 @@ const Header = () => {
                                         transition
                                         menuClassName="bg-secondary-100 p-4">       
             <div className="p-0 hover:bg-transparent">
-              <div className='rounded-lg transition-colors text-gray-300 hover:bg-primary/30 flex items-center gap-x-4 py-2 px-6'>
+              <div className='rounded-lg transition-colors text-gray-300 hover:bg-secondary-100 flex items-center gap-x-4 py-2 px-6'>
                 <img src={user.photoURL || img_logo} className="w-8 h-8 object-cover rounded-full"/>
                 <div className='flex flex-col text-sm'>
                   <span className='text-sm'>{user.displayName || user.email}</span>
@@ -57,14 +57,14 @@ const Header = () => {
               </div>
             </div>
             <hr className='my-4 border-gray-500'/>
-            <MenuItem className="rounded-lg transition-colors text-gray-300 hover:bg-primary/30">
+            <MenuItem className="rounded-lg transition-colors text-gray-300 hover:bg-secondary-900">
               <Link  className='flex items-center gap-x-4'>
                 <RiSettings4Line/>Settings
               </Link>
             </MenuItem>
-            <MenuItem className="rounded-lg transition-colors text-gray-300 hover:bg-primary/30">
+            <MenuItem className="rounded-lg transition-colors text-gray-300 hover:bg-secondary-900">
               <Link onClick={handleLogout} className='flex items-center gap-x-4'>
-                <RiDoorOpenLine/>Exit
+                <RiDoorOpenLine/>Logout
               </Link>
             </MenuItem>
         </Menu>

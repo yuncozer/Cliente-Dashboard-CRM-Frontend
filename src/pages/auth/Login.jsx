@@ -5,7 +5,7 @@ import { RiMailFill, RiLockFill, RiEyeFill, RiEyeOffFill } from "react-icons/ri"
 import { useAuth } from '../../context/authContext';
 
 
-export const Login = () => {
+const Login = () => {
 
   const [showPassword, setShowPassword] = useState(false);
   const [user, setUser] = useState({ email: '', password: '' });
@@ -105,10 +105,12 @@ export const Login = () => {
         <span className='flex items-center gap-2'>
           ¿You haven't account? <Link to="/registro"
             className='text-primary/80 hover:text-gray-100 transition-colors'>
-            Register
+            Sing up
           </Link>
         </span>
       </div>
     </div>
   )
 }
+
+export default Login;

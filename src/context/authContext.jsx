@@ -10,6 +10,7 @@ import {
     onAuthStateChanged,
     sendPasswordResetEmail
 } from "firebase/auth";
+import { ClassNames } from "@emotion/react";
 
 
 export const authContext = createContext()
@@ -25,19 +26,25 @@ export const useAuth = () => {
 export function AuthProvider({ children }) {
 
     const [user, setUser] = useState(null)
+    const [pending, setPending] = useState(true)
     useEffect(() => {
         const suscribed = onAuthStateChanged(auth, (currentUser) => {
             if (!currentUser) {
                 console.log("No hay usuario logeado");
-                setUser("")
+                setUser(null)
+                setPending(false)
             } else {
                 setUser(currentUser)
-                console.log(user);
+                setPending(false)
+                console.log(currentUser);
             }
         })
         return () => suscribed()
     }, [])
+        
+    if (pending) return <div className="p-40 text-3xl font-bold animate-bounce">Loading</div>
 
+      
     const register = async (email, password) => {
         await createUserWithEmailAndPassword(auth, email, password)
         // console.log(email, "  ", password);
@@ -69,7 +76,8 @@ export function AuthProvider({ children }) {
             loginWithGoogle,
             logout,
             resetPassword,
-            user
+            user,
+            pending
         }}>{children}
         </authContext.Provider>);
 }

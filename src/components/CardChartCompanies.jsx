@@ -11,10 +11,9 @@ const wrapperStyle = {
     border: 'none'
 }
 
-export const CardChart = (data) =>{
+export const CardChartCompanies = (data) =>{
   const { pathname } = useLocation();
-  const page = pathname.split("/").slice(0,1).filter((el) => el !== ""); 
-  console.log("Page: ",page);
+  const [layout1, page] = pathname.split("/").filter((el) => el !== ""); 
     return (
       <div className='sm:col-span-4 items-center justify-center h-80 rounded-xl bg-secondary-100 '>
         <span className='flex text-white text-xl font-bold justify-center mt-2 capitalize'>{page} creation history</span>

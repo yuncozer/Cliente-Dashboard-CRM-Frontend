@@ -7,7 +7,7 @@ import { LayoutAdmin } from "./layouts/LayoutAdmin";
 
 // Pages Auth
 import { AuthProvider } from './context/authContext';
-import { Login } from "./pages/auth/Login";
+import  Login  from "./pages/auth/Login";
 import { Register } from "./pages/auth/Register";
 import { ForgetPassword } from "./pages/auth/ForgetPassword";
 
@@ -20,6 +20,7 @@ import { AccountManagers } from "./pages/admin/AccountManagers";
 
 import { Error404 } from "./pages/Error404";
 import { ProtectedRoute } from './pages/admin/ProtectedRoute';
+import { RouteActiveUser } from './pages/admin/RouteActiveUser';
 
 
 
@@ -29,10 +30,10 @@ function App() {
     <AuthProvider>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<LayoutAuth />}>
-            <Route index element={<Login/>}/>
-            <Route path="registro" element={<Register/>}/>
-            <Route path="forgetPass" element={<ForgetPassword/>}/>
+          <Route path="/" element={ <RouteActiveUser><LayoutAuth /></RouteActiveUser>}>
+            <Route index  element={<RouteActiveUser><Login/></RouteActiveUser>}/>
+            <Route path="registro" element={<RouteActiveUser><Register/></RouteActiveUser>}/>
+            <Route path="forgetPass" element={<RouteActiveUser><ForgetPassword/></RouteActiveUser>}/>
           </Route>
           <Route path="/dashboard" element={<ProtectedRoute><LayoutAdmin /></ProtectedRoute>}> 
             <Route index element={<ProtectedRoute><Home/></ProtectedRoute> }/>

@@ -3,10 +3,10 @@ import { useAuth } from "../../context/authContext";
 import { Navigate, Route} from "react-router-dom";
    
 
-export function ProtectedRoute({children}){
+export function RouteActiveUser({children}){
     
     const {user} = useAuth();
-    if (!user) return <Navigate to='/' />
+    if (user) return <Navigate to='/dashboard' />
         return <>{children}</>;
 
     }
