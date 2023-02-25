@@ -40,7 +40,7 @@ const Header = () => {
           </span> */}
         </button>
         <Menu menuButton={<MenuButton className='flex items-center gap-x-2 hover:bg-secondary-100 py-2 px-4 rounded-lg transition-colors'>
-                              <img src={user.photoURL || img_logo } className="w-6 h-6 object-cover rounded-full"/>
+                              <img src={user.photoURL || img_logo } className="w-8 h-8 object-cover rounded-full"/>
                               <span className='font-semibold text-md text-white uppercase'>{user.displayName || user.email}</span>
                               <RiArrowDownSLine/>
                           </MenuButton>}align="end"

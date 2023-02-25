@@ -29,10 +29,10 @@ export const CardStatitics = ({title, total, growth, percentGrowth, color, icon}
               {icon}
           </CardHeader>
           <CardBody className="p-4 text-right">
-              <Typography variant="h6" className="font-bold text-white capitalize">
+              <Typography variant="h6" className="font-bold text-gray-500 capitalize">
               {title}
               </Typography>
-              <Typography variant="h3" color="light-green">
+              <Typography variant="h3" className="text-white">
               {total}
               </Typography>
           </CardBody>

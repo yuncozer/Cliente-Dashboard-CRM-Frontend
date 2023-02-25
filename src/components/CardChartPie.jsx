@@ -11,10 +11,10 @@ const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, per
   const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
   const x = cx + radius * Math.cos(-midAngle * RADIAN);
   const y = cy + radius * Math.sin(-midAngle * RADIAN);
-  // console.log("Porcentajes: ", percent);
+  percent = (percent * 100).toFixed(1)
     return (
     <text x={x} y={y} fill="white" textAnchor={x > cx ? 'start' : 'end'} dominantBaseline="central">
-      {`${(percent * 100).toFixed(1)}%`}
+      {(percent != 0.00) && `${percent}%`}
     </text>
   );
 };
@@ -26,14 +26,14 @@ export const CardChartPie = ({data}, contTotalLeads, contTotalCustomer) => {
     return (
       <div className='flex flex-col items-center h-[28rem] justify-center rounded-xl bg-secondary-100'>
        
-       <span className='text-white mt-10 mb-8 p-2 text-2xl  font-bold  rounded-2xl capitalize '>{page1} life cycle</span>
+       <span className='text-white mt-10 mb-8 text-2xl font-bold rounded-2xl capitalize '>{page1} life cycle</span>
        <div className='flex flex-row items-end'>
-          <span className='py-2 px-4 relative before:w-4 before:h-4 before:absolute before:bg-[#00C49F] before:rounded-full
-                          before:-left-[6.5px] before:top-1/2 before:-translate-y-1/2 text-gray-500'>
-            Leads
-          </span>
           <span className='py-2 px-4 relative before:w-4 before:h-4 before:absolute before:bg-[#0088FE] before:rounded-full
                           before:-left-[6.5px] before:top-1/2 before:-translate-y-1/2 text-gray-500 text-left'>
+            Leads
+          </span>
+          <span className='py-2 px-4 relative before:w-4 before:h-4 before:absolute before:bg-[#00C49F] before:rounded-full
+                          before:-left-[6.5px] before:top-1/2 before:-translate-y-1/2 text-gray-500'>
             Customers
           </span>
           <span className='py-2 px-4 relative before:w-4 before:h-4 before:absolute before:bg-[#ca8cbb] before:rounded-full

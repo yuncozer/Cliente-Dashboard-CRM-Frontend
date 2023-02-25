@@ -51,7 +51,7 @@ const Login = () => {
           <img src="https://cdn-icons-png.flaticon.com/512/300/300221.png"
             className='w-4 h-4'
           />
-          Login with Google
+          Sing in with Google
         </button>
       <form onSubmit={handleSubmit} className='mb-8'>
         {/* -------------------INPUT EMAIL--------------------------- */}
@@ -90,7 +90,7 @@ const Login = () => {
           {/* -------------------Button Login--------------------------- */}
           <button type='submit'
             className='bg-primary w-full text-secondary-100 py-3 px-4 rounded-lg  hover:text-white hover:bg-secondary-900 transition-colors uppercase font-bold'>
-            Login
+            Sing in
           </button>
         </div>
       </form>

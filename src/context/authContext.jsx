@@ -42,7 +42,7 @@ export function AuthProvider({ children }) {
         return () => suscribed()
     }, [])
         
-    if (pending) return <div className="p-40 text-3xl font-bold animate-bounce">Loading</div>
+    if (pending) return <div className="grid grid-cols-1 place-content-center text-3xl font-bold animate-bounce">Loading</div>
 
       
     const register = async (email, password) => {

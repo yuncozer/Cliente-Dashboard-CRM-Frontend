@@ -1,7 +1,7 @@
 import React, { useState, useEffect} from 'react'
 import { useLocation } from 'react-router-dom';
 import { FetchApiData } from '../../Helpers/FetchApiData';
-import { DataCardsContacts } from '../../Helpers/DataCardsContacts';
+import { DataCardsContacts } from '../../Helpers/DataCardContacts';
 import { DataChartContacts } from '../../Helpers/DataChartContacts';
 import { DataChartPieContacts } from '../../Helpers/DataChartPieContacts';
 import { CardHubspot } from '../../components/CardHubspot';
@@ -101,7 +101,7 @@ export const Contacts = () => {
                       color="orange"
                       title="Contacts with owner"
                       total={contTotalContactsWithOwner}
-                      growth= {growthCostumers}
+                      growth= {growthContacts}
                       percentGrowth= {percentGrowthContactsOwner}
                     />     
                 </div>                 
