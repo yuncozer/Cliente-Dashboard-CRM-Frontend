@@ -8,7 +8,7 @@ const columns = [
         label: "Name Deal"
     },
     {
-        name: "type",
+        name: "typeActivity",
         label: "Type Activity"
     },
     {
@@ -23,11 +23,11 @@ const columns = [
 
 
 
-export const TableList = (data, isLoading) => {
+export const TableList = ({data, isLoading}) => {
 
     var options   = {
         download: false,
-        elevation: 0.9,
+        elevation: 1,
         filterType: "dropdown",
         jumpToPage: true,
         responsive: 'standard',
@@ -39,13 +39,15 @@ export const TableList = (data, isLoading) => {
                                 noMatch: "Loading data..."
                             }
                     }
-    };   
- 
+    };
+    console.log("PERROO ", isLoading);
+    if (!isLoading && data.length == 0) options.textLabels.body.noMatch = "Sorry, no matching records found";
+
     return (
                 <div className='sm:col-span-4 items-center justify-center mt-4'>
                     <MUIDataTable 
                         title={"ENGAGEMENT DONE BY DEAL OWNERS LAST WEEK (ACCOUNT MANAGERS)"}
-                        data={data.data}
+                        data={data}
                         columns={columns}
                         options={options}
                     />

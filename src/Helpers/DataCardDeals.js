@@ -7,6 +7,7 @@ export const DataCardDeals = (backendData) => {
   let contDate = 0;
   let percentGrowthDeals = 0;
   let growthDeals = false;
+  let contDealWithOwner = 0;
 
      // Calculate total companies in CRM
     const dataLength = backendData.length;
@@ -23,10 +24,15 @@ export const DataCardDeals = (backendData) => {
     // Calculates percentage growth in companies compared to the previous month
     percentGrowthDeals = (contDate*100)/dataLength;
     
+    if (el.idOwner) contDealWithOwner +=1; 
+
     });
+
+     
   return {
         dataLength,
         percentGrowthDeals,
-        growthDeals
+        growthDeals,
+        contDealWithOwner
   }
 }

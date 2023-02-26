@@ -3,21 +3,6 @@
 export const DataCardDealsAccountsManager = (backendDataDeals, backendDataOwners) => {
   
   let dataDeals = [];
-    // const colors = ["brown",
-    //                 "deep-orange",
-    //                 "orange",
-    //                 "light-green",
-    //                 "green",
-    //                 "teal",
-    //                 "cyan",
-    //                 "light-blue",
-    //                 "blue",
-    //                 "indigo",
-    //                 "deep-purple",
-    //                 "purple",
-    //                 "pink",
-    //                 "red"];
-
 
   backendDataDeals.map((elDeal, index)=> {
     backendDataOwners.map( elOwner => {
@@ -30,6 +15,15 @@ export const DataCardDealsAccountsManager = (backendDataDeals, backendDataOwners
             ownerName: elOwner.name,
             nextStep: elDeal.nextStep,
             color: 'indigo'
+        }
+      }
+      if(!elDeal.idOwner && (elDeal.isClosed == 'false')){
+        dataDeals[index]= {
+          idDeal: elDeal.id,
+          nameDeal: elDeal.name,
+          amount: elDeal.amount,
+          nextStep: elDeal.nextStep,
+          color: 'red'
         }
       }
     })

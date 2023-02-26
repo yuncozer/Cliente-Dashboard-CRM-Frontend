@@ -38,7 +38,7 @@ export const CardStatitics = ({title, total, growth, percentGrowth, color, icon}
           </CardBody>
           <CardFooter className="border-t border-blue-gray-50 p-4" >
               <Typography className={ growth ? `text-light-green-600` : `text-red-400`}>
-              {parseInt(percentGrowth)}% + than last month
+              {percentGrowth}
               </Typography>
           </CardFooter>      
         </Card>

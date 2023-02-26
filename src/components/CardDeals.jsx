@@ -45,6 +45,7 @@ export const CardDeals = ({nameDeal, amount, nextStep, ownerName, color, icon}) 
 
 CardDeals.defaultProps = {
     color: "gray",
+    ownerName: "no owner assigned"
   };
 
   CardDeals.propTypes = {

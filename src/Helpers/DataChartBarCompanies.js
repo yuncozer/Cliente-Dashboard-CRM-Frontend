@@ -25,15 +25,15 @@ export const DataChartBarCompanies = (backendData) => {
         (el.lifeCycleStage === "evangelist") ? contEvangelist += 1 : (el.lifeCycleStage === "other") ? contOther += 1 :
             contUndefined += 1;
     })
-    const dataChartBarCompanies = [ { name: "Subscriber", value: contSubscriber },
-                                    { name: "Lead", value: contLead },
-                                    { name: "Market Lead", value: contMarketingQLead }, 
-                                    { name: "Sales lead", value: contSalesQLead }, 
-                                    { name: "Opportunity", value: contOpportunity }, 
-                                    { name: "Customer", value: contCustomer }, 
-                                    { name: "Evangelist", value: contEvangelist }, 
-                                    { name: "Others", value: contOther }, 
-                                    { name: "Undefined", value: contUndefined }, 
+    const dataChartBarCompanies = [ { name: "Subscriber", total: contSubscriber },
+                                    { name: "Lead", total: contLead },
+                                    { name: "Market Lead", total: contMarketingQLead }, 
+                                    { name: "Sales lead", total: contSalesQLead }, 
+                                    { name: "Opportunity", total: contOpportunity }, 
+                                    { name: "Customer", total: contCustomer }, 
+                                    { name: "Evangelist", total: contEvangelist }, 
+                                    { name: "Others", total: contOther }, 
+                                    { name: "Undefined", total: contUndefined }, 
                                 ];
     // console.log("Others:  ", contOthers);
     return {

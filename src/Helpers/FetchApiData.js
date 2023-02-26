@@ -6,7 +6,7 @@ export const FetchApiData = (page, deals, owners) => {
     const [backendData, setBackendData] = useState ([]);
     const [backendDataDeals, setBackendDataDeals] = useState ([]);
     const [backendDataOwners, setBackendDataOwners] = useState ([]);
-    const [ isLoading, setIsLoading ] = useState ( true );
+    const [ isLoadingFetchData , setIsLoadingFetchData ] = useState ( true );
     
     useEffect( () => {
       fetch(`/api${page}`).then(  
@@ -14,7 +14,7 @@ export const FetchApiData = (page, deals, owners) => {
       ).then(
         data => {
             setBackendData( data );
-            setIsLoading( false );          
+            setIsLoadingFetchData( false );          
         }
       )
       if (deals && owners) {
@@ -22,16 +22,14 @@ export const FetchApiData = (page, deals, owners) => {
           response => response.json()
         ).then(
           data => {
-              setBackendDataDeals( data );
-              //setIsLoading( false );          
+              setBackendDataDeals( data );                      
           }
         )
         fetch(`/api${owners}`).then(  
           response => response.json()
         ).then(
           data => {
-              setBackendDataOwners( data );
-              //setIsLoading( false );          
+              setBackendDataOwners( data );   
           }
         )
       }
@@ -45,6 +43,6 @@ export const FetchApiData = (page, deals, owners) => {
         backendData,
         backendDataDeals,
         backendDataOwners,
-        isLoading
+        isLoadingFetchData
     }
 }
