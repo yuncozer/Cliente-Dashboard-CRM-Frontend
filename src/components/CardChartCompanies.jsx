@@ -14,8 +14,11 @@ const wrapperStyle = {
 export const CardChartCompanies = ({ data }) => {
 
   return (
-    <div className='sm:col-span-4 items-center justify-center h-80 rounded-xl bg-secondary-100 '>
-      <span className='flex text-white text-xl font-bold justify-center mt-2 capitalize'>Companies creation history</span>
+    <div className='col-span-2 sm:col-span-4 pb-4 h-80 rounded-xl bg-secondary-100 '>
+      <span className='flex flex-col items-center text-white text-xl font-bold justify-center mt-2 capitalize'>
+        Companies creation history
+        <span className='text-xs text-gray-500'>The last four months</span>
+      </span>
       <ResponsiveContainer width="100%" height="100%">
         <AreaChart
           width={500}

@@ -1,5 +1,5 @@
 import React from 'react';
-import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, Label } from 'recharts';
+import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
 
 const contentStyle = {
@@ -14,8 +14,10 @@ const wrapperStyle = {
 export const CardChartDeals = ({ data }) => {
 
   return (
-    <div className='sm:col-span-4 items-center justify-center pb-8 h-80 rounded-xl bg-secondary-100 '>
-      <span className='flex text-white text-xl font-bold justify-center mt-2 capitalize'>Deals creation history</span>
+    <div className='col-span-2 sm:col-span-4 pb-10 h-80 rounded-xl bg-secondary-100 '>
+      <span className='flex flex-col items-center text-white text-xl font-bold justify-center mt-2 capitalize'>Deals creation history
+        <span className='text-xs text-gray-500'>The last four months</span>
+      </span>
       <ResponsiveContainer width="100%" height="100%">
         <AreaChart
           width={500}

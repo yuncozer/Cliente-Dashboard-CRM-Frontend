@@ -1,26 +1,12 @@
 import React from 'react'
-import {
-    Card,
-    CardHeader,
-    CardBody,
-    CardFooter,
-    Typography,
-    Input,
-    Checkbox,
-    Button,
-  } from "@material-tailwind/react";
-
+import { Card, CardHeader, CardBody, CardFooter, Typography } from "@material-tailwind/react";
 
 
 export const CardStatitics = ({title, total, growth, percentGrowth, color, icon}) => {
 
 
   return (
-    <div className='mt-4 '>
-        {/* <div className=''>
-                <RiBuildingLine className='text-6xl  bg-purple-500/10 text-purple-500 p-2 box-content rounded-xl
-                absolute -mt-4 grid h-16 w-16 place-items-center'/>
-        </div> */}
+    <div className='mt-4'>
         <Card className="bg-secondary-100">
           <CardHeader
               variant="gradient"
@@ -42,7 +28,6 @@ export const CardStatitics = ({title, total, growth, percentGrowth, color, icon}
               </Typography>
           </CardFooter>      
         </Card>
-    </div>
-    
+    </div> 
   )
 }

@@ -2,15 +2,10 @@ import React from 'react'
 import { useLocation } from 'react-router-dom';
 import { DataCardDealsAccountsManager } from '../../Helpers/DataCardDealsAccountsManager';
 import { FetchApiData } from '../../Helpers/FetchApiData';
-import { RiDownload2Fill } from "react-icons/ri";
 import { CardHubspot } from '../../components/CardHubspot';
-import { CardChart } from '../../components/CardChart';
 import { CardDeals } from '../../components/CardDeals';
-import { CardChartPie } from '../../components/CardChartPie';
 import { TableList } from '../../components/TableList';
-// import { DataTableAMActivitys } from '../../Helpers/DataTableAMActivitys';
-// import { ThemeProvider, createTheme } from '@mui/material/styles';
-import { ThemeProvider, useTheme, createTheme } from '@mui/material/styles';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 
 
 // Create custom theme
@@ -33,23 +28,21 @@ const getDesignTokens = (mode) => ({
 });
 
 
-
-
 export const AccountManagers = () => {
 
   // Hook Location Page
-
   const { pathname } = useLocation();
-  const [layout, page] = pathname.split("/").filter((el) => el !== "");
+  const [page] = pathname.split("/").slice(2, 3).filter((el) => el !== "");
 
   // Call to api in the backend server
-  const deals = 'deals';
-  const owners = 'owners';
-  const { backendData, backendDataDeals, backendDataOwners, isLoadingFetchData } = FetchApiData(page, deals, owners);
+  const { backendData, backendDataDeals, backendDataOwners, isLoadingFetchData } = FetchApiData(page, 'deals', 'owners');
+
+  // Get data card deals
   const { dataDeals } = DataCardDealsAccountsManager(backendDataDeals, backendDataOwners);
+
   // call custom theme dark
   const darkModeTheme = createTheme(getDesignTokens('dark'));
-  console.log(dataDeals);
+
   return (
     <div id='Page' className="bg-secondary-900">
 
@@ -58,11 +51,10 @@ export const AccountManagers = () => {
         {(isLoadingFetchData) ?
           dataDeals.map(el => (
             <CardDeals
-              nameDeal="loading..."
-              amount="0"
-              nextStep="loading..."
-              ownerName="loading..."
-            />)) :
+              key={el.id}
+              nameDeal="loading"
+            />
+          )) :
           dataDeals.map(el => (
             <CardDeals
               key={el.id}
@@ -86,7 +78,6 @@ export const AccountManagers = () => {
           <CardHubspot />
         </div>
       </div>
-
     </div>
   )
 }

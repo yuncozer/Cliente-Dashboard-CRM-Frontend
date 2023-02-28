@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { useLocation } from 'react-router-dom';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import {
     RiBarChart2Line,
     RiEarthLine,
@@ -33,7 +32,7 @@ const Sidebar = () => {
     // Hook Location Page
 
     const { pathname } = useLocation();
-    const [layout, page] = pathname.split("/").filter((el) => el !== "");
+    const [page] = pathname.split("/").slice(2, 3).filter((el) => el !== "");
 
     // Screenshot view page and donwload pdf file
 
@@ -56,11 +55,11 @@ const Sidebar = () => {
     return (
         <>
             {/* Menu */}
-            <div id="Prueba" className={`bg-secondary-100 xl:h-[100vh] overflow-y-auto fixed xl:static w-[80%] sm:w-[40%] md:w-[40%] lg:w-[30%] xl:w-auto
+            <div id="Sidebar" className={`bg-secondary-100 xl:h-[100vh] overflow-y-auto fixed xl:static w-[80%] sm:w-[40%] md:w-[40%] lg:w-[30%] xl:w-auto
                         h-full top-0 p-4 flex flex-col justify-between z-50 ${showMenu ? 'left-0' : '-left-full'} transition-all`}>
                 <div>
                     <h1 className='flex items-center text-center text-2xl font-bold text-white mb-10'>
-                        <RiDashboard2Fill className='text-primary mr-2' />Dashboard CRM {/*<span className='text-primary text-4xl'>.</span> */}
+                        <RiDashboard2Fill className='text-primary mr-2' />Dashboard CRM 
                     </h1>
                     {/* Items */}
                     <ul>
@@ -73,7 +72,7 @@ const Sidebar = () => {
                                 </span>
                                 <RiArrowRightSLine className={`mt-1 ${showSubMenu && 'rotate-90'} transition-all`} />
                             </button>
-                            {/* Sub-menu Redes Sociales */}
+                            {/* Sub-menu objects crm */}
                             <ul className={` ${showSubMenu ? 'h-fit' : 'h-0'}
                                         overflow-y-hidden transition-all`
                             }>
@@ -101,7 +100,6 @@ const Sidebar = () => {
                                         Deals
                                     </Link>
                                 </li>
-
                             </ul>
                         </li>
                         {/* Account Manager Activity */}
@@ -123,8 +121,7 @@ const Sidebar = () => {
                 </div>
                 <nav>
                     <Link onClick={() => handleLogout()}
-                        className='flex items-center gap-4 py-2 px-4 rounded-lg hover:bg-secondary-900 transition-colors'
-                    /*to='/'*/ >
+                        className='flex items-center gap-4 py-2 px-4 rounded-lg hover:bg-secondary-900 transition-colors'>
                         <RiDoorOpenLine className='text-primary' />Log out
                     </Link>
                 </nav>
@@ -138,4 +135,4 @@ const Sidebar = () => {
     )
 }
 
-export default Sidebar
+export default Sidebar;

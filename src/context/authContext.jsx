@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, createContext, useContext } from "react";
 import { auth } from "../firebase/firebase.config"
-import { createContext, useContext } from "react"
 import {
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
@@ -10,7 +9,7 @@ import {
     onAuthStateChanged,
     sendPasswordResetEmail
 } from "firebase/auth";
-import { ClassNames } from "@emotion/react";
+import img_logo from '../../public/img/logo.jpg';
 
 
 export const authContext = createContext()
@@ -27,46 +26,36 @@ export function AuthProvider({ children }) {
 
     const [user, setUser] = useState(null)
     const [pending, setPending] = useState(true)
+
     useEffect(() => {
         const suscribed = onAuthStateChanged(auth, (currentUser) => {
             if (!currentUser) {
-                console.log("No hay usuario logeado");
                 setUser(null)
                 setPending(false)
             } else {
                 setUser(currentUser)
                 setPending(false)
-                console.log(currentUser);
             }
         })
         return () => suscribed()
     }, [])
-        
-    if (pending) return <div className="grid grid-cols-1 place-content-center text-3xl font-bold animate-bounce">Loading</div>
 
-      
-    const register = async (email, password) => {
-        await createUserWithEmailAndPassword(auth, email, password)
-        // console.log(email, "  ", password);
-    }
+    if (pending)
+        return <div className="flex flex-col items-center justify-center mt-[40vh] gap-4 text-2xl sm:text-5xl text-white font-bold">
+            Loading <img src={img_logo} className=" w-16 h-16 sm:w-24 sm:h-24 rounded-full animate-spin" />
+        </div>
 
-    const login = async (email, password) => {
-        await signInWithEmailAndPassword(auth, email, password)
-        // console.log(response);
-        // console.log(email, "  ", password);
-    }
+    const register = async (email, password) => await createUserWithEmailAndPassword(auth, email, password)
+
+    const login = async (email, password) => await signInWithEmailAndPassword(auth, email, password)
+
+    const logout = async () => await signOut(auth)
+
+    const resetPassword = async (email) => await sendPasswordResetEmail(auth, email)
+
     const loginWithGoogle = async () => {
         const responseGoogle = new GoogleAuthProvider()
         return await signInWithPopup(auth, responseGoogle)
-    }
-
-    const logout = async () => {
-        const response = await signOut(auth)
-        console.log(response);
-    }
-
-    const resetPassword = async(email) => {
-       await sendPasswordResetEmail(auth, email)
     }
 
     return (
